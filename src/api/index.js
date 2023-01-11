@@ -33,3 +33,19 @@ export const reqGetSearchInfo = (params) => {
 export const reqGetgoodsInfo = (id) => {
   return requests.get(`/item/${id}`);
 };
+// 点击加入购物车之后的请求
+export const reqAddOrUpdateShopCart = (skuId, skuNum) => {
+  return requests.post(`/cart/addToCart/${skuId}/${skuNum}`);
+};
+// 获取购物车信息的请求
+export const reqShopCartList = () => {
+  return requests.get(`/cart/cartList`);
+};
+// 删除购物车商品的请求
+export const reqDeleteShopCar = (skuId) => {
+  return requests.delete(`/cart/deleteCart/${skuId}`);
+};
+// 切换购物车的商品选中状态的请求
+export const reqCheckShopCar = (skuId,isChecked) => {
+  return requests.get(`/cart/checkCart/${skuId}/${isChecked}`);
+};

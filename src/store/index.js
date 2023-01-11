@@ -3,6 +3,7 @@ import Vuex from "vuex";
 import home from "./home";
 import search from "./search";
 import detail from "./detail";
+import shopCart from "./shopCart";
 //vuex实现模块式存储
 Vue.use(Vuex);
 // 对外暴露Store类的一个实例
@@ -22,7 +23,7 @@ Vue.use(Vuex);
 // // getters理解为计算属性，用于简化仓库属性，让组件获取仓库数据更方便
 // const getters = {};
 export default new Vuex.Store({
-  modules: { home, search, detail },
+  modules: { home, search, detail, shopCart },
   // state,
   // actions,
   // mutations,

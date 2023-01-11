@@ -39,6 +39,6 @@ export default new VueRouter({
   routes,
   scrollBehavior(to, from, savedPosition) {
     // 始终滚动到顶部
-    return { y: 200 }; //y(垂直的属性):（数字默认单位px？）
+    return { y: 0 }; //y(垂直的属性):（数字默认单位px？）
   },
 });

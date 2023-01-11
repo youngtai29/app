@@ -6,6 +6,8 @@ import Login from "@/pages/Login";
 import Search from "@/pages/Search";
 import Register from "@/pages/Register";
 import Detail from "@/pages/Detail";
+import AddCartSucess from "@/pages/AddCartSuccess";
+import ShopCart from "@/pages/ShopCart";
 export default [
   { path: "/home", component: Home, meta: { showFooter: true } },
   {
@@ -26,6 +28,18 @@ export default [
   { path: "/login", component: Login, meta: { showFooter: false } },
   { path: "/register", component: Register, meta: { showFooter: false } },
   { path: "/detail/:id?", component: Detail, meta: { showFooter: true } },
+  {
+    name: "addcartsuccess",
+    path: "/addcartsuccess/:skuId/:skuNum",
+    component: AddCartSucess,
+    meta: { showFooter: true },
+  },
+  {
+    name: "shopcart",
+    path: "/shopcart",
+    component: ShopCart,
+    meta: { showFooter: true },
+  },
   // 重定向默认定向到首页
   { path: "/", redirect: "/home" },
 ];

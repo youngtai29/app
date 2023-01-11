@@ -84,6 +84,7 @@
                   {{ goodAttrs.saleAttrName }}
                 </dt>
                 <dd
+                  ref="saleAttrs"
                   @click="
                     changeActive(saleName, goodAttrs.spuSaleAttrValueList)
                   "
@@ -118,7 +119,7 @@
                   >-</a
                 >
               </div>
-              <div class="add">
+              <div class="add" @click="addShopCart">
                 <a href="javascript:">加入购物车</a>
               </div>
             </div>
@@ -438,6 +439,32 @@ export default {
 
         this.goodsNum = parseInt(value);
       }
+    },
+    // 点击添加购物后的回调---会进行路由跳转
+    async addShopCart() {
+      // 需要传递的参数商品id，商品数量，商品售卖属性
+      const skuId = this.$route.params.id;
+      const skuNum = this.goodsNum;
+      // this.$store.dispatch("addOrUpdateShopCart", { skuId, skuName });
+
+      try {
+        const response = await this.$store.dispatch("addOrUpdateShopCart", {
+          skuId,
+          skuNum,
+        });
+        if (response && response === "ok") {
+          this.$router.push({
+            name: "addcartsuccess",
+            params: { skuId, skuNum },
+          });
+          // 一些简单的参数，不如skuId，skuName可以通过query，params参数的形式【传递给路由组件】，通过this.$route读取
+          // 而产品信息的数据可以通过浏览器读写的方式【传递给路由组件】
+          sessionStorage.setItem("SKUINFO", JSON.stringify(this.skuInfo));
+        }
+      } catch (error) {
+        alert("加入购物车失败");
+      }
+      // console.log(response);//ok
     },
   },
   components: {
