@@ -27,7 +27,7 @@ export const reqGetFloorList = () => {
  */
 // ATNaxios.post写法不是对象形式，简写形式（axios.post不能这么写），完整写法可以（去掉post）
 export const reqGetSearchInfo = (params) => {
-  return requests.post("/list", { data: params });
+  return requests.post("/list", params);
 };
 // 商品详情的请求
 export const reqGetgoodsInfo = (id) => {
@@ -46,6 +46,18 @@ export const reqDeleteShopCar = (skuId) => {
   return requests.delete(`/cart/deleteCart/${skuId}`);
 };
 // 切换购物车的商品选中状态的请求
-export const reqCheckShopCar = (skuId,isChecked) => {
+export const reqCheckShopCart = (skuId, isChecked) => {
   return requests.get(`/cart/checkCart/${skuId}/${isChecked}`);
+};
+// 用户注册的请求
+export const reqRegister = (data) => {
+  return requests.post(`/user/passport/register`, data);
+};
+// 用户请求验证码的请求
+export const reqVerifyCode = (phoneNum) => {
+  return requests.get(`/user/passport/sendCode/${phoneNum}`);
+};
+// 用户点击登录的请求
+export const reqLogin = (data) => {
+  return requests.post(`/user/passport/login`, data);
 };
