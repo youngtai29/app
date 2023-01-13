@@ -14,7 +14,7 @@
           </ul>
 
           <div class="content">
-            <form action="##">
+            <form onsubmit="return false;" action="##">
               <div class="input-text clearFix">
                 <span></span>
                 <input

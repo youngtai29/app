@@ -61,3 +61,11 @@ export const reqVerifyCode = (phoneNum) => {
 export const reqLogin = (data) => {
   return requests.post(`/user/passport/login`, data);
 };
+//获取用户的信息，需要带着用户的token(在请求头中设置)
+export const reqUserInfo = () => {
+  return requests.get(`/user/passport/auth/getUserInfo`);
+};
+// 退出登录的请求
+export const reqUserLogout = () => {
+  return requests.get(`/user/passport/logout`);
+};

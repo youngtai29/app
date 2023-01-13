@@ -39,6 +39,7 @@ export default {
   mounted() {
     this.$store.dispatch("floorList");
     // console.log(this.floorList);
+    if (this.$store.state.login.token) this.$store.dispatch("getUserInfo");
   },
 
   computed: {

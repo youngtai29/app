@@ -42,6 +42,7 @@ const actions = {
       commit("GETFLOORLIST", result.data);
     }
   },
+
   // params形参是数据载荷，是用户再派发action时，第二个参数传递过来的，至少是一个空对象
 };
 const getters = {};

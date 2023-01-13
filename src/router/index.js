@@ -33,7 +33,7 @@ VueRouter.prototype.replace = function (location, okCallback, errCallback) {
     );
   }
 };
-export default new VueRouter({
+let router = new VueRouter({
   // 配置路由
   mode: "history",
   routes,
@@ -42,3 +42,6 @@ export default new VueRouter({
     return { y: 0 }; //y(垂直的属性):（数字默认单位px？）
   },
 });
+//beforeEach(guard)配置全局守卫,next()放行
+router.beforeEach((to, from, next) => {});
+export default router;
