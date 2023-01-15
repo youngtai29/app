@@ -56,6 +56,10 @@ router.beforeEach(async (to, from, next) => {
   // next(false);//浏览器的url发生变化时，url地址重置到from
   // ---------------------------*
   // 业务逻辑：登录后不能再去到/login
+  /* 
+  没登陆能去的页面：首页，搜索页，详情页，注册页，登录页
+  登陆后能去的的页面：购物车，订单生成页，个人中心，支付页，不包括（支付成功页）
+  */
   let token = store.state.login.token;
   let userName = store.state.login.userInfo.name;
   if (token) {
@@ -90,8 +94,16 @@ router.beforeEach(async (to, from, next) => {
       }
     }
   } else {
-    if (to.path === "/shopcart") {
-      next("/login");
+    // else的内容是对未登录的状态进行配置
+    const path = to.path;
+
+    if (
+      path.indexOf("shopcart") !== -1 ||
+      path.indexOf("center") !== -1 ||
+      path.indexOf("trade") !== -1 ||
+      path.indexOf("pay") !== -1
+    ) {
+      next("/login?redirect=" + path);
     } else {
       next();
     }

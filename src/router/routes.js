@@ -31,8 +31,16 @@ export default [
     //   return { keyword: $route.params.keyword, k: $route.query.k };
     // },
   },
-  { path: "/login", component: Login, meta: { showFooter: false } },
-  { path: "/register", component: Register, meta: { showFooter: false } },
+  {
+    path: "/login",
+    component: Login,
+    meta: { showFooter: false, hideHeader: true },
+  },
+  {
+    path: "/register",
+    component: Register,
+    meta: { showFooter: false, hideHeader: true },
+  },
   { path: "/detail/:id?", component: Detail, meta: { showFooter: true } },
   {
     name: "addcartsuccess",
@@ -47,12 +55,25 @@ export default [
     meta: { showFooter: true },
   },
   {
+    // 路由独享守卫
+    beforeEnter: (to, from, next) => {
+      if (from.path === "/shopcart") next();
+      // 必须是从购物车来到结算页
+      else next(false); //从哪来回哪去
+    },
     name: "trade",
     path: "/trade",
     component: Trade,
     meta: { showFooter: true },
   },
   {
+    // 问题QS刷新完又被拦住了（next(false)）----后台检验发现已经生成订单数据，传回来一个令牌，又能跳了
+    // 路由守卫配置
+    beforeEnter: (to, from, next) => {
+      // 必须是从结算页来到订单页
+      if (from.path === "/trade") next();
+      else next(false); //从哪来回哪去
+    },
     name: "pay",
     path: "/pay",
     component: Pay,

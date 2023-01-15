@@ -79,6 +79,9 @@
 <script>
 export default {
   name: "Login",
+  mounted() {
+    console.log(this.$route.query);
+  },
   data() {
     return {
       account: "",
@@ -90,7 +93,10 @@ export default {
       const data = { phone: this.account, password: this.password };
       try {
         await this.$store.dispatch("userLogin", data);
-        this.$router.push("/home");
+        if (this.$route.query.redirect) {
+          // 应该还要再校验一遍，有没有对应path的路由，没有就跳首页（或者跳到丢失页面，x秒后自动跳转到首页）
+          this.$router.push(this.$route.query.redirect);
+        } else this.$router.push("/home");
       } catch (error) {
         alert(error.message);
       }
