@@ -2,6 +2,7 @@ const { defineConfig } = require("@vue/cli-service");
 module.exports = defineConfig({
   transpileDependencies: true,
   lintOnSave: false /*关闭语法检查*/,
+  productionSourceMap: false,
   devServer: {
     //配置自动打开浏览器时的地址设置
     // host: "localhost",
