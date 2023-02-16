@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <!-- <h2>我是唯一根组件App</h2> -->
-    <h1 v-upper="msg">joke</h1>
+    <!-- <h1 v-upper="msg">joke</h1> -->
     <Header v-if="!$route.meta.hideHeader"></Header>
     <router-view></router-view>
     <!-- 路由组件出口的地方 -->
